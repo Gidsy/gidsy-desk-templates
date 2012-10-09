@@ -1659,6 +1659,26 @@
   {% endunless %}
   });
 
+  {% if page == 'page_search_result' %}
+    // Track 0 result searches
+    (function() {
+      var q = new RegExp('(\\?|&)q=(.*?)(&|$)').exec(location.search);
+      if (q) {
+        term = decodeURIComponent(q[2]);
+
+        var results = $('ul#search-results li');
+        var has_results =
+          !(results.length == 1 && $(results[0]).hasClass('notice'));
+
+        if (!has_results) {
+          var track = ['_trackEvent', 'Search', 'ZeroResults',
+                       term || '[blank]'];
+          _gaq.push(track);
+        }
+      }
+    })();
+  {% endif %}
+
   // Overwrite the 'Thank You' text when rating an article for helpfulness
   $(function(){ $("#rate_article div:nth-child(1) a").click(function(){ $("#rate_article").css("visibility", "hidden"); window.setTimeout(showHello, 1000); }); $("#rate_article div:nth-child(2) a").click(function(){ $("#rate_article").css("visibility", "hidden"); window.setTimeout(showHello, 1000); }) }); 
   function showHello(){ $("#rate_article").text("You're welcome!");
