@@ -11,8 +11,7 @@ The Help Center uses a custom Desk.com web template named 'Gidsy support'.
 
     ``gidsy/templates/desk/gidsy_template/``
 
-* When done editing, the code can be inserted in the Advanced Templates editor
-at::
+* When done editing, the code can be inserted in the Advanced Templates editor at::
 
     ``https://help.gidsy.com/admin/channels/support-center/web-templates``
 
