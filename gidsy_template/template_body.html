@@ -1,0 +1,1667 @@
+{% comment %}
+  The following capture sets the variable sidebar_include to use the sidebar HTML as a snippet on each page
+{% endcomment %}
+{% capture sidebar_include %}
+  <!-- included from var! -->
+  <ul id="sidebar-navigation">                            
+    <li class="topic topic327796 {% if topic.id == 327796 %}active{% endif %}">
+      <a href="/customer/portal/topics/327796-getting-started/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Getting Started</span></a>
+    </li><!-- end .topic -->
+  
+    <li class="topic topic327808 {% if topic.id == 327808 %}active{% endif %}">
+      <a href="/customer/portal/topics/327808-general-information/articles" class="topic-header"><span class="topic-icon"></span><span class="title">General Information</span></a>
+    </li><!-- end .topic -->
+  
+    <li class="topic topic306659 {% if topic.id == 306659 %}active{% endif %}">
+      <a href="/customer/portal/topics/306659-organizing-activities/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Organizing Activities</span></a>
+    </li><!-- end .topic -->
+
+    <li class="topic topic327804 {% if topic.id == 327804 %}active{% endif %}">
+      <a href="/customer/portal/topics/327804-booking-events/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Booking Events</span></a>
+    </li><!-- end .topic -->
+
+    <li class="topic topic327807 {% if topic.id == 327807 %}active{% endif %}">
+      <a href="/customer/portal/topics/327807-trust-safety/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Trust &amp; Safety</span></a>
+    </li><!-- end .topic -->
+
+    <li class="topic topic327797 {% if topic.id == 327797 %}active{% endif %}">
+      <a href="/customer/portal/topics/327797-accounts-profiles/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Accounts &amp; Profiles</span></a>
+    </li><!-- end .topic -->
+                  
+    <li class="topic topic327806 {% if topic.id == 327806 %}active{% endif %}">
+      <a href="/customer/portal/topics/327806-payments-payouts/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Payments &amp; Payouts</span></a>
+    </li><!-- end .topic -->
+                
+    <li class="topic topic327805 {% if topic.id == 327805 %}active{% endif %}">
+      <a href="/customer/portal/topics/327805-cancellations-refunds/articles" class="topic-header"><span class="topic-icon"></span><span class="title">Cancellations &amp; Refunds</span></a>
+    </li><!-- end .topic -->
+  </ul><!-- end #sidebar-navigation -->
+{% endcapture %}
+<!-- start Gidsy header -->
+<div id="site-wrapper">
+  <div class="header-bar support-center">
+    <div class="light-area"></div>
+    <div class="container_12">
+      <div class="content-area grid_12">
+        <div class="blue-arrow">
+          <a href="https://gidsy.com" class="logo">
+            <span class="gidsy-logo"></span>
+            Home
+          </a>
+        </div>
+        <div class="arrow"></div>
+        <div class="header-title">
+          <div class="title-text">
+              <a href="/">{{system.snippets.support_center}}</a>
+          </div>
+        </div>
+        <ul class="header-menu">
+          {% if site.portal_authentication_enabled_config and current_user and current_user.is_guest == false %}
+            <li class="button"><a href="#organize-activity">Organize an activity</a></li>
+            <li>
+              <a href="https://gidsy.com/search">
+                <span class="header-search">Search</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://gidsy.com/dashboard/">
+                <span class="header-activities">Dashboard</span>
+              </a>
+            </li>
+            <li class="db_inbox msg-count-0">
+              <a href="https://gidsy.com/messages/inbox">
+                <span class="header-inbox">Inbox</span>
+              </a>
+            </li>
+            <li id="gidsy-account-tab" class="account-tab last">
+              <img src="{{ current_user.customer.custom_avatar }}" alt="{{ current_user.customer.custom_gidsyusername }}" width="20" height="20" class="avatar-display">
+              <span class="name">{{ current_user.customer.name }}</span>
+              <span class="down-arrow"></span>
+              <div class="dropdown">
+                <div class="item">
+                  <a href="https://gidsy.com/dashboard/">
+                    Dashboard
+                  </a>
+                </div>
+                <div class="item">
+                  <a href="https://gidsy.com/{{ current_user.customer.custom_gidsyusername }}">
+                    My profile
+                  </a>
+                </div>
+              
+                <div class="item">
+                  <a href="https://gidsy.com/activities/booking/favorites/">
+                    Favorites
+                  </a>
+                </div>
+                <div class="item">
+                  <a href="https://gidsy.com/notice-email-setting/">
+                    Account
+                  </a>
+                </div>
+                                
+                <div class="item last">
+                  <a href="{{ site.authentication_logout_url }}">
+                    Sign out
+                  </a>
+                </div>
+              </div><!-- end .dropdown -->
+            </li>
+          {% else %}
+            <li>
+              <a href="https://gidsy.com/about">How it works</a>
+            </li>
+            <li class="">
+              <a href="https://gidsy.com/signup/">Sign up</a>
+            </li>
+            <li class="last">
+              <a href="{{ site.authentication_login_url }}">{{system.snippets.login}}</a>
+            </li>
+            <li class="button last">
+              <a href="https://gidsy.com/activities/manage/">Organize an activity</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- end Gidsy Header -->
+
+  <div id='company-support-portal' class="container_12">
+  {% if page != 'page_index' %}
+    <div id='support-header' class="grid_12">
+      <div class='wrapper clearfix'>
+        <div id='breadcrumbs' class="{% if page == 'email_new' or page == 'email_pre_create' or page == 'email_submitted' %}grid_5{% else %}grid_7{% endif %} alpha">
+          <a href='{{home_link}}'>{{system.snippets.home}}</a>
+          {% if article %}
+          &rsaquo; <a href='{{ topic.public_articles_url }}'>{{ topic.name | clip:30 }}</a>
+          {% endif %}
+          {% if page == 'page_topic' %}
+            &rsaquo; {{ topic.name | clip:30 }}
+          {% elsif page == 'page_search_result' %}
+            &rsaquo; {{system.snippets.search}}
+          {% elsif page == 'email_new' or page == 'email_pre_create' or page == 'email_submitted' %}
+            &rsaquo; {{system.snippets.contact_us}}
+          {% endif %}
+        </div>
+        {% if page == 'email_new' or page == 'email_pre_create' or page == 'email_submitted' %}
+          <div class="business-hours right">
+            <span class="clock-icon"></span>You can contact us 24/7, and we'll get back to you within 48 hours.
+          </div>
+        {% else %}
+          <div class="need-help right grid_5 omega">
+            <p>Need help from a person? <a class="gidsy-button green-button right" href="{{email_link}}">{{system.snippets.email_us}}</a></p>  
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+    
+    <div class='wrapper grid_12'>
+      <!--begin:portal_body-->
+      {% if page  == "page_index" %}
+      <!--begin:page_index-->
+
+      <div id="desk-external-variables-page_index" class="desk-external-variables">
+        <div id="system-snippets-just_moderated">{{just_moderated}}</div>
+      </div>
+
+      <div class="grid_12 text-center">
+        <h1 class="welcome-text">{{system.snippets.welcome}}</h1>
+      </div>
+      <div class="clear"></div>
+
+      {{ search_form_begin }} 
+        <div class='outer'>
+          <div class="inner">
+            <input type='text' id='q' class="query-input" name='q' maxlength='100' value='' />
+            {{template_form_params}}
+            <input type='submit' id='support-search-submit' class="gidsy-button green-button left" value='{{system.snippets.search}}' />
+            <div class="clear"></div>
+            <div id='question-mask' class='question-big'>{{system.snippets.have_a_question}}</div>
+          </div>
+        </div>
+      {{ search_form_end }}
+
+      <div id='support-main'>
+        {% if just_moderated %}
+          <div id="modal-screen">&nbsp;</div>
+          <div id="modal">
+            <div class="inner">
+              <div class="main">
+                <h1>{{system.snippets.your_post_submitted}}</h1>
+                <p class='subheader'>
+                  {{system.snippets.not_shown_until_reviewed}}
+                </p>
+                <div id='form'>
+                  <div class='input-button'>
+                    <input id='moderation_okay_button'  name='commit' type='submit'  value='{{system.snippets.okay}}' />
+                    <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;'/>
+                  </div> 
+                </div> 
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        <div class='support-body clearfix'>
+          <div class='content dashboard'>
+            {% if topics_count > 0 %}
+            {% capture topics_count_first %}
+              {{ topics_count | divided_by:2 }}
+            {% endcapture %}
+            <div class="topics-list prefix_2 grid_8 alpha omega">
+              <div class="left-topic-column grid_4 alpha omega">
+                {% for topic in topics %}
+                  {% capture counter %}{% cycle 'odd', 'even' %}{% endcapture %}
+                  {% if counter == "odd" %}
+                    <div class='topic topic{{ topic.id }} grid_4 alpha omega'>
+                      <a href="{{ topic.public_articles_url }}" class="topic-header"><span class="topic-icon"></span><h3>{{ topic.name }}</h3></a>
+                      {% if topic.article_count > 0 %}
+                        <div class="articles-list">
+                          <ul class="articles-list-topic{{ topic.id }}">
+                            {% for article in topic.articles limit:5 %}
+                              <li>
+                                <a href='{{ article.public_url }}'>{{ article.subject_plain | clip:66 }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                          <a href='{{ topic.public_articles_url }}' class="view-all">{{system.snippets.view_all}} {{ topic.article_count }} {{ system.snippets.article | pluralize: topic.article_count }} <span class="view-all-arrow"></span></a>
+                        </div>
+                      {% endif %}
+                      {% if site.questions_enabled_config %}
+                        {% if topic.question_count > 0 and topic.allow_questions %}
+                          <h5 class='questions'>
+                            {{system.snippets.recent_qna}}
+                            <a href='{{ topic.public_questions_url }}'>{{system.snippets.view_all}}</a>
+                          </h5>
+                          <ul>
+                            {% for question in topic.questions limit:5 %}
+                              {% if question.featured? %}
+                                <li class='featured'>
+                                  <a href='{{ question.public_url }}'>{{ question.subject_plain | clip:40 }}</a>
+                                </li>
+                              {% else %}
+                                <li>
+                                  <a href='{{ question.public_url }}'>{{ question.subject_plain | clip:40 }}</a>
+                                </li>
+                              {% endif %}
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      {% endif %}
+                    </div><!-- end .topic -->
+                  {% endif %}
+                {% endfor %}
+              </div><!-- end .left-column -->
+              <div class="right-topic-column grid_4 alpha omega">
+                {% for topic in topics %}
+                  {% capture counter %}{% cycle 'odd', 'even' %}{% endcapture %}
+                  {% if counter == "even" %}
+                    <div class='topic topic{{ topic.id }} grid_4 alpha omega'>
+                        <a href="{{ topic.public_articles_url }}" class="topic-header"><span class="topic-icon"></span><h3>{{ topic.name }}</h3></a>
+                        {% if topic.article_count > 0 %}
+                          <div class="articles-list">
+                            <ul class="articles-list-topic{{ topic.id }}">
+                              {% for article in topic.articles limit:5 %}
+                                <li>
+                                  <a href='{{ article.public_url }}'>{{ article.subject_plain | clip:66 }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                            <a href='{{ topic.public_articles_url }}' class="view-all">{{system.snippets.view_all}} {{ topic.article_count }} {{ system.snippets.article | pluralize: topic.article_count }} <span class="view-all-arrow"></span></a>
+                          </div>
+                        {% endif %}
+                        {% if site.questions_enabled_config %}
+                          {% if topic.question_count > 0 and topic.allow_questions %}
+                            <h5 class='questions'>
+                              {{system.snippets.recent_qna}}
+                              <a href='{{ topic.public_questions_url }}'>{{system.snippets.view_all}}</a>
+                            </h5>
+                            <ul>
+                              {% for question in topic.questions limit:5 %}
+                                {% if question.featured? %}
+                                  <li class='featured'>
+                                    <a href='{{ question.public_url }}'>{{ question.subject_plain | clip:40 }}</a>
+                                  </li>
+                                {% else %}
+                                  <li>
+                                    <a href='{{ question.public_url }}'>{{ question.subject_plain | clip:40 }}</a>
+                                  </li>
+                                {% endif %}
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        {% endif %}
+                      </div><!-- end .topic -->
+                  {% endif %}
+                {% endfor %}
+              </div><!-- end .right-topic-column -->
+            </div>
+            {% else %}
+              <h3>{{system.snippets.no_topics_avail}}</h3>
+            {% endif %}
+            <div class="clear"></div>
+            <div class="need-help prefix_2 grid_5 alpha omega">
+              <p>Need help from a person? <a href="{{email_link}}">{{system.snippets.email_us}}</a></p>  
+            </div>
+
+            {% comment %}
+            <!-- start sneaky output for sidebar -->
+            <div class="content">
+              <ul id="sidebar-navigation">
+                {% for topic in topics %}
+                  <li class='topic topic{{ topic.id }}'>
+                    <a href="{{ topic.public_articles_url }}" class="topic-header"><span class="topic-icon"></span><span class="title">{{ topic.name }}</span></a>
+                  </li><!-- end .topic -->
+                {% endfor %}
+              </ul>
+            </div>
+            <!-- end sneaky output -->
+            {% endcomment %}
+
+          </div><!-- end .content.dashboard -->
+        </div><!-- end .support-body -->
+        
+        <!-- GS -->
+        {% if enable_gs %}
+        <div id='support-main' style='margin-top:20px;'>
+          <div class='support-body'>
+            <div class='content dashboard'>
+              <h3>{{system.snippets.community_discussions}}</h3>
+                <table id="gs-table" width='100%' cellspacing='0'>
+                <tr class="row1">
+                  <td class="col1" width="50%">
+                    <div id="gs_questions">
+                      <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+                    </div>
+                  </td>
+                  <td class="col2">
+                    <div id="gs_ideas">
+                      <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+                    </div>
+                  </td>
+                </tr>
+                <tr class="row2 last">
+                  <td class="col1">
+                    <div id="gs_problems">
+                      <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+                    </div>
+                  </td>
+                  <td class="col2">
+                    <div id="gs_praises">
+                      <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+                    </div>  
+                  </td>
+                </tr>                  
+            {{gs_scripting}}
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <!-- GS -->
+      </div><!-- end support-main -->
+      <!--script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.page_index.js"></script-->
+      <script type="text/javascript">
+
+        // Index page topic list toggle:
+        $('.articles-list').hide();
+        $(function(){
+          $('.topic-header').click(function(event){
+            if($(this).next('.articles-list').is('.open')){
+              $('.topic-header.active').toggleClass('active');
+              $('.articles-list.open').slideToggle(400).toggleClass('open');
+            } else {
+              $('.topic-header.active').toggleClass('active');
+              $(this).toggleClass('active');
+              $('.articles-list.open').slideToggle(400).toggleClass('open');
+              $(this).next('.articles-list').slideToggle(400).toggleClass('open');
+            }
+            event.preventDefault();
+          })
+        });
+      </script>
+      <!--end:page_index-->
+      {% elsif page == "page_article" %}
+      <!--begin:page_article-->
+      <div id='support-main'>
+
+        <div class='support-body'>
+          <div class='content article grid_8 alpha'>
+          {% if article == null %}
+            <h2>{{system.snippets.article_translation_missing}} {{system.language_name_localized}}</h2>
+          {% else %}
+            <div class='title'>
+              <h2>{{ article.subject_plain }}</h2>
+            </div>
+
+            <div class='article-content'>
+              {{ article.body }}
+            </div><!-- end article-content -->
+            {% if article.number_of_attachments > 0 %}
+              <div id='attachments'>
+                <strong>{{system.snippets.attachments}}</strong>
+                <ul>
+                  {% for attachment in article.kb_article_attachments %}
+                    <li>
+                      <a href="{{ attachment.faq_download_url }}" class="kb_article_attachment_a" target="_blank">{{ attachment.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            <div class="article-footer">
+              <div class="grid_3 alpha omega">
+                {{ rate_block }}
+              </div>
+              <div class="need-help right grid_5 alpha omega">
+                <p>Need help from a person? <a class="right" href="{{email_link}}">{{system.snippets.email_us}}</a></p>
+              </div>
+              <div class="clear"></div>
+            </div>
+            {% endif %}
+
+            {% assign related_limit = 5 %}
+            {% comment %}
+              If an article is in the first 5 of the topic, we don't show it in the related articles, so the limit will be set to 6 for the for-loop
+            {% endcomment %}
+            {% capture article_in_topic %}
+              {% for other_article in topic.articles limit:5 %}
+                {% if other_article.id == article.id %}
+                  {% assign related_limit = 6 %}
+                {% endif %}
+              {% endfor %}
+            {% endcapture %}
+            {% if related_limit == 6 and topic.article_count == 1 %}
+              <!-- no related articles -->
+            {% else %}
+            <div id="related-articles">
+              <h4>Related articles</h4>
+              <ul>
+                {% for other_article in topic.articles limit:related_limit %}
+                  {% if other_article.id != article.id %}
+                    <li><a href='{{ other_article.public_url }}'>{{ other_article.subject_plain }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div><!-- end #related-articles -->
+            {% endif %}
+          </div><!-- end .content .article -->
+
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>        
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!--end:page_article-->
+      {% elsif page == "page_topic" %}
+      <!--begin:page_topic-->
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content articles grid_8 alpha'>
+          {% if topic == null %}
+            <h3>{{system.snippets.topic_translation_missing}} {{system.language_name_localized}}</h3>
+          {% else %}
+            <ul>
+              {% if type == 'articles' %}
+                {% for article in articles %}
+                  <li class='article'>
+                    <h2>
+                      <a href='{{ article.public_url }}'>{{ article.subject_plain }}</a>
+                    </h2>
+                    <p class="text-16px grey-text">{{ article.body_plain | clip:255 }}</p>
+                  </li>
+                {% endfor %}
+              {% else %}
+                {% for question in questions %}
+                  <li class='question{% if question.featured? %} featured{% endif %}'>
+                    <h4>
+                      <a href='{{ question.public_url }}'>{{ question.subject_plain | clip:70 }}</a>
+                    </h4>
+                    <p>{{ question.body_plain | clip:110 }}</p>
+                    <div class='meta'>
+                      {% if question.answers_agent_count > 0 %}
+                        <span class='answered'>
+                          {{ question.answers_agent_count }}
+                          {{ site.agent_name_config }}
+                          {{ system.snippets.answer | pluralize: question.answers_agent_count }}
+                        </span>
+                      {% endif %}
+                      <span class='count'>
+                        {{ question.answers_customer_count }}
+                        {{ 'Community Answer' | pluralize: question.answers_customer_count }}
+                      </span>
+                      <span>
+                        {{ question.created_at | in_time_zone: site.timezone | date: '%b %d, %Y %I:%M%p %Z' }}
+                      </span>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+            <div id='pagination'>
+              {{ more_article_block }}
+            </div>
+          {% endif %}
+          </div><!-- end content .articles -->
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+        </div><!-- end .support-body -->
+      </div><!-- end #support-main -->
+      <!--end:page_topic-->
+
+      {% elsif page == "page_search_result" %}
+      <!--begin:page_search_result-->
+      <div id="desk-external-variables-page_search_result" class="desk-external-variables">
+        <div id="search_term">{{ search_term }}</div>
+      </div>
+
+      <div style="display:none" id="search_term">{{ search_term }}</div>
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content articles search-results grid_8 alpha'>
+            <h3 class="title">{{ number_search_results }} {{system.snippets.results_found_for}} <strong>{{ search_term }}</strong>:</h3>
+            <ul id='search-results'>
+              {% for result in search_results %}
+                <li class='{% if result.class_name == "Question" and result.featured? == false %}question{% elsif result.class_name == "Question" and result.featured? %}question featured{% elsif result.class_name == "Article" %}article{% endif %}'>
+                  <h2>
+                    <a href='{{ result.public_url }}'>{{ result.subject_plain }}</a>
+                  </h2>
+                  <p class="text-16px grey-text">{{ result.body_plain | clip:255 }}</p>
+                </li>
+              {% endfor %}
+              {% if number_search_results == 0 %}
+                <li class='notice'>
+                  <h4>
+                    {{system.snippets.sorry_try_another_search}}
+                    <a href='{{email_link}}'>{{system.snippets.send_us_an_email}}</a>.
+                  </h4>
+                </li>
+              {% endif %}
+            </ul>
+            <div id='pagination'>
+              {{ more_search_block }}
+            </div>
+          </div><!-- end content .articles -->
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>        
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+
+        <!-- GS -->
+        {% if enable_gs %}
+          <div class='support-body'>
+            <div class='content articles'>
+              <div id="gs_search_title">
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              <div id='gs_search_results'></div>
+            </div>
+          </div>
+        {% endif %}
+        <!-- GS -->
+        
+        </div><!-- end .support-body -->
+      </div><!-- end #support-main -->
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.page_search_result.js"></script>
+      <!--end:page_search_result-->
+      {% elsif page == "question_show" %}
+      <!--begin:question_show-->
+      <div id="desk-external-variables-question_show" class="desk-external-variables">
+        <div id="system-snippets-just_moderated">{{just_moderated}}</div>
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-email_required">{{system.snippets.email_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-answer_required">{{system.snippets.answer_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      {% assign customer_answer_count = question.answers_customer_count %}
+      {% assign agent_answer_count = question.answers_agent_count %}
+      {% assign answers_count = question.answers_count %}
+      {% assign best_answer = question.best_answer %}
+      <div id='breadcrumbs'>
+        <a href='{{home_link}}'>{{system.snippets.home}}</a> &rsaquo; <a href='{{ question.topic.public_questions_url }}'>{{ question.topic.name  | clip:30 }}</a> &rsaquo; {{ question.subject | clip:30 }}
+      </div>
+      <div id='support-main'>
+        {% if just_moderated %}
+          <div id="modal-screen">&nbsp;</div>
+          <div id="modal">
+            <div class="inner">
+              <div class="main">
+                <h1>{{system.snippets.your_post_submitted}}</h1>
+                <p class='subheader'>
+                  {{system.snippets.not_shown_until_reviewed}}
+                </p>
+                <div id='form'>
+                  <div class='input-button'>
+                    <input id='moderation_okay_button'  name='commit' type='submit'  value='{{system.snippets.okay}}' />
+                    <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;'/>
+                  </div> 
+                </div> 
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        <div class='support-body'>
+          <div class='content question'>
+            <div class='question-body'>
+              <span class='gravatar-wrapper'>
+                {{ question.from_email | gravatar_image: gravatar_unknown_user, ssl }}
+              </span>
+              <div class='question-details'>
+                <h3>{{ question.subject }}</h3>
+                <div class='meta'>
+                  <span class='name'>
+                    {{ question.from_name }}
+                  </span>
+                  <span>
+                    {{ question.created_at | in_time_zone: site.timezone | date: '%b %d, %Y %I:%M%p %Z' }}
+                  </span>
+                </div>
+                <p>{{ question.body }}</p>
+                {% if best_answer != nil %} 
+                <h4 id='question-best-answer-heading'>
+                  {{ answers_count }}
+                  Community 
+                  {{ 'Answer' | pluralize: answer_count }}
+                </h4>
+              {% endif %}
+              </div>
+              {% if best_answer != nil %}
+                <div id='question-best-answer'>
+                  <div class='reply'>
+                    <span class='best-answer-green'>
+                      {{system.snippets.best_answer}}
+                    </span>
+                    <span class='gravatar-wrapper'>
+                      {{ best_answer.from_email | gravatar_image: gravatar_unknown_user,  ssl }}
+                    </span>
+                    <div class='answer-details'>
+                      <div class='meta'>
+                        <span>
+                          {{ best_answer.from_name }}
+                        </span>
+                        <span class="date">
+                          {{ best_answer.updated_at | in_time_zone: site.timezone | date: '%b %d, %Y %I:%M%p %Z' }}
+                        </span>
+                      </div>
+                      <p>{{ best_answer.body }}</p>
+                      {% if question.answers_count > 1 %}
+                          <p>
+                          <span>
+                            <a href="#best-answer-conversation">
+                              {{system.snippets.view_conversation}}
+                            </a>
+                          </span>
+                        </p>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <br/>
+                </div>
+                {% endif %}
+            </div>
+            {% if question.non_best_answers_exist %}
+              <div class='replies'>
+                {% for answer in question.answers %}
+                  <div class='reply'>
+                     {% if current_user == answer.user %}
+                      <div class='answer-rating rating-true'>
+                        <div>
+                          <span class='score {% if answer.rating_value > 0 %}score-positive{% elsif answer.rating_value < 0 %}score-negative{% endif %}' id='score-{{answer.id}}'>{{ answer.rating_value }}</span>
+                          <span class='dialog'>{{system.snippets.score}}</span>
+                        </div>
+                      </div>
+                    {% else %}
+                      <div class='answer-rating rating-{{ answer | already_rated_by_user: current_user }}'>
+                        <div>
+                          {{ answer | already_rated_up: current_user }}
+                          <span class='score {% if answer.rating_value > 0 %}score-positive{% elsif answer.rating_value < 0 %}score-negative{% endif %}' id='score-{{answer.id}}'>{{ answer.rating_value }}</span>
+                          <span class='dialog'>{{system.snippets.rated}}</span>
+                          {{ answer | already_rated_down: current_user }}
+                        </div>
+                      </div>
+                    {% endif %}
+                    <span class='gravatar-wrapper'>
+                      {{ answer.from_email | gravatar_image: gravatar_unknown_user,   ssl }}
+                    </span>
+                    <div class='answer-details'>
+                      <div class='meta'>
+                        <span>
+                          {{ answer.from_name }}
+                        </span>
+                        {% if answer.id == best_answer.id %}
+                            <span class='best-answer-green'>
+                            <a name="best-answer-conversation">
+                              {{system.snippets.best_answer}}
+                            </a>
+                          </span>
+                        {% endif %}
+                        {% if answer.agent? %}
+                              <span class='date-short'>
+                              {{ answer.updated_at | in_time_zone: site.timezone | date: '%b %d, %Y %I:%M%p %Z' }}
+                          </span>
+                          <span class='agent-answer-label'>
+                            {{ site.company_name }} {{ site.agent_name_config }}
+                          </span>
+                        {% else %}
+                          <span class='date'>
+                            {{ answer.updated_at | in_time_zone: site.timezone | date: '%b %d, %Y %I:%M%p %Z' }}
+                          </span>
+                        {% endif %}
+                      </div>
+                      <div class="answer-body">{{ answer.body }}</div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            {% if question.allow_answers? != true or question.case.closed? %}
+              <p class='form-notice'>{{system.snippets.question_closed}}</p>
+            {% else %}
+              <div id='form'>
+                <h4>{{system.snippets.post_public_answer}}</h4>
+                <div id='qna-reply-form'>
+                  {{ form_begin }}
+                    {% if current_user == nil or current_user.is_guest %}
+                      <div class='input-block'>
+                        <label class='label'>
+                          {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                        </label>
+                        <div>
+                          <input id='interaction_name' maxlength='100' name='interaction[name]' value='{{ interaction.name }}' type='text' />
+                        </div>
+                      </div>
+                      <div class='input-block'>
+                        <label class='label'>
+                          {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span> 
+                        </label>
+                        <div>
+                          <input id='interaction_email' value='{{ interaction.email }}' maxlength='100' name='interaction[email]' size='100' type='text' />
+                        </div>
+                      </div>
+                    {% endif %}
+                    <div class='input-block'>
+                      <label class='label'>
+                        {{system.snippets.answer}} <span class="required">({{system.snippets.required}})</span>
+                      </label>
+                      <div>
+                        <textarea cols='40' id='qna_body' name='qna[body]' rows='20'>{{ qna.body }}</textarea>
+                      </div>
+                    </div>
+                    <div class='input-button'>
+                      <input id='answer_submit' name='commit' type='submit' value='Post Answer' />
+                    </div>
+                  {{ form_end }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.question_show.js"></script>
+      <!--end:question_show-->
+      {% elsif page == "question_new" %}
+      <!--begin:question_new-->
+      <div id="desk-external-variables-question_new" class="desk-external-variables">
+        <div id="qna-kb_topic_id">{{qna.kb_topic_id}}</div>
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-subject_required">{{system.snippets.subject_required}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='breadcrumbs'>
+        <a href='{{home_link}}'>{{system.snippets.home}}</a> &rsaquo; {{system.snippets.post_public_question}}
+      </div>
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content'>
+            <h3>{{system.snippets.post_public_question}}</h3>
+            <div id='form'>
+              {{form_begin}}
+                <div class='input-block'>
+                  <span class='label'>{{system.snippets.topic}}</span>
+                  <div>
+                    <select id='qna_kb_topic_id' name='qna[kb_topic_id]'>
+                      {% for topic in topics %}
+                      <option value='{{ topic.id }}'>{{ topic.name | clip:30 }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block'>
+                    <span class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </span>
+                    <div>
+                      <input id='interaction_name' value='{{ interaction.name }}' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block'>
+                    <span class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </span>
+                    <div>
+                      <input id='interaction_email' value='{{ interaction.email }}' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %}
+                <div class='input-block'>
+                  <span class='label'>
+                    {{system.snippets.subject}} <span class="required">({{system.snippets.required}})</span>
+                  </span>
+                  <div>
+                    <input id='qna_subject' maxlength='100' name='qna[subject]' type='text' value='{% if search_term and search_term != '' %}{{search_term}}{% else %}{{qna.subject}}{%endif%}' />
+                  </div>
+                </div>
+                <div class='input-block'>
+                  <span class='label'>
+                    {{system.snippets.your_question}} <span class="required">({{system.snippets.required}})</span>
+                  </span>
+                  <div>
+                    <textarea id='qna_body' name='qna[body]'>{{qna.body}}</textarea>
+                  </div>
+                </div>
+                <div class='input-button'>
+                  <input id='question_submit' name='commit' type='submit' value='{{system.snippets.ask_question}}' />
+                  <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                </div>
+              {{form_end}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.question_new.js"></script>
+      <!--end:question_new-->
+      {% elsif page == "question_pre_create" %}
+      <!--begin:question_pre_create-->
+      <div id="desk-external-variables-question_pre_create" class="desk-external-variables">
+        <div id="search_term">{{search_term}}</div>
+        <div id="number_search_results">{{number_search_results}}</div>
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-subject_required">{{system.snippets.subject_required}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='breadcrumbs'>
+        <a href='{{home_link}}'>{{system.snippets.home}}</a> &rsaquo; {{system.snippets.post_public_question}}
+      </div>
+      <div id='support-main'>
+        <div id="modal-screen">&nbsp;</div>
+        <div id="modal">
+          <div class="inner articles">
+            <div class="close">
+              <a href="/" class="onclick-go-back">
+                <img src='{{ "/images/fancybox/fancybox_close.png" | portal_image_url: image_asset_host }}' alt='close'>
+              </a>
+            </div>
+            <div class="main">
+              {% if number_search_results > 0 %}
+                <h1>{{system.snippets.not_posted_question_yet}}</h1>
+                <p class="subheader">{{system.snippets.article_help}}</p>
+                <ul id='search-results' class='condensed'>
+                  {% for result in search_results limit:3 %}
+                    <li class='{% if result.class_name == "Question" and result.featured? == false %}question{% elsif result.class_name == "Question" and result.featured? %}question featured{% elsif result.class_name == "Article" %}article{% endif %}'>
+                      <h4>
+                        <a href='{{ result.public_url }}' target='_blank'>
+                          {{ result.subject_plain | clip:70 }}
+                        </a>
+                      </h4>
+                      <p>
+                        {{ result.body_plain | clip:105 }}
+                      </p>
+                    </li>
+                  {% endfor %}
+                  <li class="note">
+                    ({{system.snippets.click_open_window}})
+                  </li>
+                </ul>
+                <div id='form'>
+                  {{form_begin}}
+                    <div class='input-button'>
+                      {{system.snippets.did_not_help}}
+                      <input id='question_submit' name='commit' type='submit' value='{{system.snippets.post_question}}' />
+                      <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                    </div>
+                  {{form_end}}
+                </div>
+              {% else %}
+                <h1>
+                  {{system.snippets.please_wait}}
+                </h1>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class='support-body'>
+          <div class='content'>
+            <h3>{{system.snippets.post_public_question}}</h3>
+            <div id='form'>
+              {{form_begin}}
+                <div class='input-block'>
+                  <span class='label'>{{system.snippets.topic}}</span>
+                  <div>
+                    <select id='qna_kb_topic_id' name='qna[kb_topic_id]'>
+                      {% for topic in topics %}
+                      <option value='{{ topic.id }}'>{{ topic.name | clip:30 }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block'>
+                    <span class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </span>
+                    <div>
+                      <input id='interaction_name' value='{{ interaction.name }}' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block'>
+                    <span class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </span>
+                    <div>
+                      <input id='interaction_email' value='{{ interaction.email }}' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %}
+                <div class='input-block'>
+                  <span class='label'>
+                    {{system.snippets.subject}} <span class="required">({{system.snippets.required}})</span>
+                  </span>
+                  <div>
+                    <input id='qna_subject' maxlength='100' name='qna[subject]' type='text' value='{% if search_term and search_term != '' %}{{search_term}}{% else %}{{qna.subject}}{%endif%}' />
+                  </div>
+                </div>
+                <div class='input-block'>
+                  <span class='label'>
+                    {{system.snippets.your_question}} <span class="required">({{system.snippets.required}})</span>
+                  </span>
+                  <div>
+                    <textarea id='qna_body' name='qna[body]'>{{qna.body}}</textarea>
+                  </div>
+                </div>
+                <div class='input-button'>
+                  <input id='question_submit' name='commit' type='submit' value='{{system.snippets.ask_question}}' />
+                </div>
+              {{form_end}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.question_pre_create.js"></script>
+      <!--end:question_pre_create-->
+      {% elsif page == "email_new" %}
+      <!--begin:email_new-->
+      <div id="desk-external-variables-email_new" class="desk-external-variables">
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-email_required">{{system.snippets.email_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-subject_required">{{system.snippets.subject_required}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content contact-us grid_8 alpha'>
+            <div id='form' class="uniForm  general-form">
+              {{form_begin}}
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.name }}' id='interaction_name' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.email }}' id='interaction_email' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %} 
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.subject}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <input id='email_subject' maxlength='100' name='email[subject]' type='text' value='{% if search_term and search_term != '' %}{{search_term}}{% else %}{{email.subject}}{%endif%}'/>
+                  </div> 
+                </div> 
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.message}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <textarea id='email_body' name='email[body]'>{{email.body}}</textarea>
+                  </div>
+                </div>
+                <!-- Hide the file attachment:
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.file_attachment}}
+                  </label>
+                  <div>
+                    <input name="case_attachment[attachment]" size="84" type="file"/>
+                  </div>
+                </div>
+                -->
+                <div class='button-bar'>
+                  <input id='email_submit' class="gidsy-button green-button left" name='commit' type='submit' value='{{system.snippets.send_email}}' />
+                  <div class="text-14px help-text" style="vertical-align: middle; float:right; padding:12px 0 0 10px;">
+                    {% if site.portal_authentication_enabled_config and current_user and current_user.is_guest == false %}
+                      <a href="https://gidsy.com/team" class="light">We</a> can't wait to hear from you, {{ current_user.customer.name }}!
+                    {% else %}
+                      <a href="https://gidsy.com/team" class="light">We</a> can't wait to hear from you!
+                    {% endif %}
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              {{form_end}}
+            </div>
+          </div><!-- end .content -->
+
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>        
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.email_new.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){ 
+          //The following line causes the email to skip the kb search (AKA email_pre_create)
+          $('#new_email').attr('action','/customer/portal/emails');
+        });
+        </script>
+          <!--end:email_new-->
+      {% elsif page == "email_pre_create" %}
+      <!--begin:email_pre_create-->
+      <div id="desk-external-variables-email_pre_create" class="desk-external-variables">
+        <div id="search_term">{{search_term}}</div>
+        <div id="number_search_results">{{number_search_results}}</div>
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-email_required">{{system.snippets.email_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-subject_required">{{system.snippets.subject_required}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='support-main'>
+        <div id="modal-screen">&nbsp;</div>
+        <div id="modal">
+          <div class="inner articles">
+            <div class="close">
+              <a href="/" class="onclick-go-back">
+                <img src='{{ "/images/fancybox/fancybox_close.png" | portal_image_url: image_asset_host }}' alt='close'>
+              </a>
+            </div>
+            <div class="main">
+              {% if number_search_results > 0 %}
+                <h1>{{system.snippets.not_posted_yet}}</h1>
+                <p class="subheader">{{system.snippets.article_help}}</p>
+                <ul id='search-results' class='condensed'>
+                  {% for result in search_results limit:3 %}
+                    <li class='{% if result.class_name == "Question" and result.featured? == false %}question{% elsif result.class_name == "Question" and result.featured? %}question featured{% elsif result.class_name == "Article" %}article{% endif %}'>
+                      <h4>
+                        <a href='{{ result.public_url }}' target='_blank'>
+                          {{ result.subject_plain | clip:70 }}
+                        </a>
+                      </h4>
+                      <p>
+                        {{ result.body_plain | clip:105 }}
+                      </p>
+                    </li>
+                  {% endfor %}
+                  <li class="note">
+                    ({{system.snippets.click_open_window}})
+                  </li>
+                </ul>
+                <div id='form'>
+                  {{form_begin}}
+                    <div class='input-button'>
+                      {{system.snippets.did_not_help}}
+                      <input id='email_submit' name='commit' type='submit' value='{{system.snippets.send_your_email}}' />
+                      <img alt='Ajax-loader-small' id='email_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                    </div>
+                  {{form_end}}
+                </div>
+              {% else %}
+                <h1>
+                  {{system.snippets.please_wait}}
+                </h1>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class='support-body'>
+          <div class='content contact-us grid_8 alpha'>
+            <div id='form' class="uniForm  general-form">
+              {{form_begin}}
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.name }}' id='interaction_name' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.email }}' id='interaction_email' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %} 
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.subject}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <input id='email_subject' maxlength='100' name='email[subject]' type='text' value='{% if search_term and search_term != '' %}{{search_term}}{% else %}{{email.subject}}{%endif%}'/>
+                  </div> 
+                </div> 
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.message}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <textarea id='email_body' name='email[body]'>{{email.body}}</textarea>
+                  </div>
+                </div>
+                <!-- Hide the file attachment:
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.file_attachment}}
+                  </label>
+                  <div>
+                    <input name="case_attachment[attachment]" size="84" type="file"/>
+                  </div>
+                </div>
+                -->
+                <br/>
+                <div class='input-button'>
+                  <input id='email_submit' class="gidsy-button green-button" name='commit' type='submit' value='{{system.snippets.send_email}}' />
+                  <img alt='Ajax-loader-small' id='email_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                </div>
+              {{form_end}}
+            </div>
+          </div><!-- end .content -->
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>        
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.email_pre_create.js"></script>
+      <!--end:email_pre_create-->
+      {% elsif page == "email_submitted" %}
+      <!--begin:email_submitted-->
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content contact-us grid_8 alpha'>
+            <h3>{{system.snippets.email_success}}</h3>
+            <p class="text-20px">Thank you for your message. We’ll get back to you as soon as possible!</p>
+          </div>
+          <div id='support-side' class="grid_3 prefix_1 omega">
+            <div class='content'>
+              {{ search_form_begin }}
+                <div class="search-box">
+                  <input id='q' class="message-search text-field inline-label-field" maxlength='100' name='q' type='text' value='{{ search_term }}' />
+                  {{template_form_params}}
+                  <div id='question-mask' class='question-small'>{{system.snippets.have_a_question}}</div>
+                  <input id='support-search-submit' class="search_submit" type='submit' value='{{system.snippets.search}}' />
+                </div>
+              {{ search_form_end }}
+            </div>
+            <div class="content">
+              {{ sidebar_include }}
+            </div>        
+            <!-- GS -->
+            {% if gs_sidebar %}
+            <div class='content'>
+              <h3>{{system.snippets.recent_discussions}}</h3>
+              <div id='gs_Sidebar_Results'>
+                <img alt='Ajax-loader-small' id='question_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display:block;margin:auto;' />
+              </div>
+              {{gs_recent_activity_scripting}}
+            </div>
+            {% endif %}
+            <!-- GS -->        
+          </div><!-- end support-side -->
+          <div class="clear"></div>
+
+        </div>
+      </div>
+      <!--end:email_submitted-->
+      {% elsif page == "chat_new" %}
+      <!--begin:chat_new-->
+      <div id="desk-external-variables-chat_new" class="desk-external-variables">
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-email_required">{{system.snippets.email_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='breadcrumbs'>
+        <a href='{{home_link}}'>{{system.snippets.home}}</a> &rsaquo; {{system.snippets.live_chat}}
+      </div>
+      <div id='support-main'>
+        <div class='support-body'>
+          <div class='content'>
+            <h3>{{system.snippets.live_chat}}</h3>
+            <div id='form'>
+              {{form_begin}}
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.name }}' id='interaction_name' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block ctrlHolder'>
+                    <label class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.email }}' id='interaction_email' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %}
+                <div class='input-block ctrlHolder'>
+                  <label class='label'>
+                    {{system.snippets.question}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <textarea id='chat_subject' name='chat[subject]'>{% if search_term and search_term != '' %}{{search_term}}{% else %}{{chat.subject}}{%endif%}</textarea>
+                  </div>
+                </div>
+                <div class='input-button'>
+                  <input id='chat_submit' name='commit' type='submit' value='{{system.snippets.go_chat}}' />
+                  <img alt='Ajax-loader-small' id='chat_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                </div>
+              {{form_end}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.chat_new.js"></script>
+      <!--end:chat_new-->
+      {% elsif page == "chat_pre_create" %}
+      <!--begin:chat_pre_create-->
+      <div id="desk-external-variables-chat_pre_create" class="desk-external-variables">
+        <div id="search_term">{{search_term}}</div>
+        <div id="number_search_results">{{number_search_results}}</div>
+        <div id="system-snippets-name_required">{{system.snippets.name_required}}</div>
+        <div id="system-snippets-email_required">{{system.snippets.email_required}}</div>
+        <div id="system-snippets-invalid_email">{{system.snippets.invalid_email}}</div>
+        <div id="system-snippets-question_required">{{system.snippets.question_required}}</div>
+        <div id="system-snippets-exceeding_max_chars">{{system.snippets.exceeding_max_chars}}</div>
+      </div>
+
+      <div id='breadcrumbs'>
+        <a href='{{home_link}}'>{{system.snippets.home}}</a> &rsaquo; {{system.snippets.live_chat}}
+      </div>
+      <div id='support-main'>
+        <div id="modal-screen">&nbsp;</div>
+        <div id="modal">
+          <div class="inner articles">
+            <div class="close">
+              <a href="/" class="onclick-go-back">
+                <img src='{{ "/images/fancybox/fancybox_close.png" | portal_image_url: image_asset_host }}' alt='close'>
+              </a>
+            </div>
+            <div class="main">
+              {% if number_search_results > 0 %}
+                <h1>{{system.snippets.not_started_chat_yet}}</h1>
+                <p class="subheader">{{system.snippets.article_help}}</p>
+                <ul id='search-results' class='condensed'>
+                  {% for result in search_results limit:3 %}
+                    <li class='{% if result.class_name == "Question" and result.featured? == false %}question{% elsif result.class_name == "Question" and result.featured? %}question featured{% elsif result.class_name == "Article" %}article{% endif %}'>
+                      <h4>
+                        <a href='{{ result.public_url }}' target='_blank'>
+                          {{ result.subject_plain | clip:70 }}
+                        </a>
+                      </h4>
+                      <p>
+                        {{ result.body_plain | clip:105 }}
+                      </p>
+                    </li>
+                  {% endfor %}
+                  <li class="note">
+                    ({{system.snippets.click_open_window}})
+                  </li>
+                </ul>
+                <div id='form'>
+                  {{form_begin}}
+                    <div class='input-button'>
+                      {{system.snippets.did_not_help}}
+                      <input id='chat_submit' name='commit' type='submit' value='{{system.snippets.start_chat}}' />
+                      <img alt='Ajax-loader-small' id='chat_submit_spinner' src='{{ "/images/ajax-loader-small.gif" | portal_image_url: image_asset_host }}' style='display: none; margin: 7px 0 0 5px; position: absolute;' />
+                    </div>
+                  {{form_end}}
+                </div>
+              {% else %}
+                <h1>{{system.snippets.chat_room_ready}}</h1>
+                <p class="subheader">{{system.snippets.click_button_chat}}</p>
+                <div id='form'>
+                  {{form_begin}}
+                    <div class='input-button'>
+                      <input id='chat_submit' name='commit' type='submit' value='{{system.snippets.start_chat}}' />
+                    </div>
+                  {{form_end}}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class='support-body'>
+          <div class='content'>
+            <h3>{{system.snippets.live_chat}}</h3>
+            <div id='form'>
+              {{form_begin}}
+                {% if current_user == nil or current_user.is_guest %}
+                  <div class='input-block'>
+                    <label class='label'>
+                      {{system.snippets.your_name}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.name }}' id='interaction_name' maxlength='100' name='interaction[name]' type='text' />
+                    </div>
+                  </div>
+                  <div class='input-block'>
+                    <label class='label'>
+                      {{system.snippets.your_email}} <span class="required">({{system.snippets.required}})</span>
+                    </label>
+                    <div>
+                      <input value='{{ interaction.email }}' id='interaction_email' maxlength='100' name='interaction[email]' type='text' />
+                    </div>
+                  </div>
+                {% endif %}
+                <div class='input-block'>
+                  <label class='label'>
+                    {{system.snippets.question}} <span class="required">({{system.snippets.required}})</span>
+                  </label>
+                  <div>
+                    <textarea id='chat_subject' name='chat[subject]'>{% if search_term and search_term != '' %}{{search_term}}{% else %}{{chat.subject}}{%endif%}</textarea>
+                  </div>
+                </div>
+                <div class='input-button'>
+                  <input id='chat_submit' name='commit' type='submit' value='{{system.snippets.go_chat}}' />
+                </div>
+              {{form_end}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.chat_pre_create.js"></script>
+      <!--end:chat_pre_create-->
+    {%endif%}
+    <!--end:portal_body-->
+    </div><!-- end .wrapper ??? -->
+    <div class="clear"></div>
+  </div><!-- end #company-support-portal -->
+
+  <!-- FOOTER  -->
+  <div class="container_12 clearfix">
+    <div class="support-teasers">
+      <div class="grid_12 separator"></div>
+      <div class="teaser-holder clearfix">
+        <div class="news-teaser grid_4">
+          <a href="http://blog.gidsy.com/">
+            <img src="https://gidsy-files.s3.amazonaws.com/desk/images/teaser-logbook.png">
+            <div class="text">
+              <h5>Logbook</h5>
+              <p>Read inspiring stories on our blog</p>
+            </div>
+          </a>
+        </div>
+        <div class="news-teaser grid_4">
+          <a href="http://gidsy.com/handbooks">
+            <img src="https://gidsy-files.s3.amazonaws.com/desk/images/teaser-handbooks.png">
+            <div class="text">
+              <h5>Handbooks</h5>
+              <p>Your go-to place for becoming a Gidsy pro</p>
+            </div>
+          </a>
+        </div>
+        <div class="news-teaser grid_4">
+          <a href="http://twitter.com/gidsystatus" target="_blank">
+            <img src="https://gidsy-files.s3.amazonaws.com/desk/images/teaser-status.png">
+            <div class="text">
+              <h5>Gidsy.com status</h5>
+              <p>Updates about the status of Gidsy.com</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div><!-- end support-teasers -->
+  </div><!-- end container_12 -->
+
+  <div id='footer' class="index-page">
+    {{ footer_content }}
+    <br class="clear" />
+  </div><!-- end #footer -->
+</div><!-- end site-wrapper -->
+<div class="container_12" id="desk_notice">
+  <!--
+  ***************
+  The following attribution needs to remain as is in terms of wording with the appropriate link back to desk.com as per our terms of service: http://www.desk.com/terms
+  If you would like, you may change the location or the styling to better match your site, but the content and the link must remain in the template and visible to end users.
+  ****************
+  -->
+  <a href='http://www.desk.com'>Customer service software</a> powered by Desk.com
+</div><!-- end .desk_notice -->
+
+
+
+<!-- Facebook Like Button -->
+<div id="fb-root"></div>
+
+<!-- External Variables for Portal Header -->
+<div id="desk-external-variables-header" class="desk-external-variables">
+   <div id="read_only">{{read_only}}</div>
+    <div id="site-default_mailbox">{{site.default_mailbox}}</div>
+  <div id="desk_javascript_host">{{desk_javascript_host}}</div>
+  <div id="twitter_enabled">{{twitter_enabled}}</div>
+  <div id="twitter_username">{{twitter_username}}</div>
+  <div id="system-snippets-loading">{{system.snippets.loading}}</div>
+  <div id="system-snippets-seconds_ago">{{system.snippets.seconds_ago}}</div>
+  <div id="system-snippets-a_minute_ago">{{system.snippets.a_minute_ago}}</div>
+  <div id="system-snippets-minutes_ago">{{system.snippets.minutes_ago}}</div>
+  <div id="system-snippets-an_hour_ago">{{system.snippets.an_hour_ago}}</div>
+  <div id="system-snippets-hours_ago">{{system.snippets.hours_ago}}</div>
+  <div id="system-snippets-a_day_ago">{{system.snippets.a_day_ago}}</div>
+  <div id="system-snippets-days_ago">{{system.snippets.days_ago}}</div>
+  <div id="system-snippets-about">{{system.snippets.about}}</div>
+  <div id="enable_gs">{{enable_gs}}</div>
+  <div id="system-snippets-invalid_characters_found">{{system.snippets.invalid_characters_found}}</div>
+  <div id="site-search_autocomplete_articles_url">{{site.search_autocomplete_articles_url}}</div>
+  <div id="search-term">{{search_term}}</div>
+  {% if enable_gs %}
+    <div id="system-snippets-get_satisfaction_error">{{system.snippets.get_satisfaction_error}}</div>
+    <div id="system-snippets-view_all">{{system.snippets.view_all}}</div>
+    <div id="system-snippets-no_related_discussions">{{system.snippets.no_related_discussions}}</div>
+    <div id="system-snippets-related_discussions">{{system.snippets.related_discussions}}</div>
+    <div id="zero0">{{0}}</div>
+    <div id="system-snippets-discussions">{{system.snippets.discussions}}</div>
+    <div id="system-snippets-replies">{{system.snippets.replies}}</div>
+    <div id="system-snippets-questions">{{system.snippets.questions}}</div>
+    <div id="system-snippets-ideas">{{system.snippets.ideas}}</div>
+    <div id="system-snippets-problems">{{system.snippets.problems}}</div>
+    <div id="system-snippets-praise">{{system.snippets.praise}}</div>
+  {% endif %}
+</div>
+
+<script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.shared.js"></script>
+<script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.header.js"></script>
+<script type="text/javascript" src="{{desk_javascript_host}}portal/desk.portal.body.layout_footer.js"></script>
+<script type="text/javascript">
+  // -------- Home button ------------
+  function home_button() {
+    $(".blue-arrow a").mouseenter(function() {
+      if($("body").hasClass("homepage") != true) {
+        $(".logo").stop().animate({
+          top: -51
+        },200);
+      }
+    }).mouseleave(function() {
+      $(".logo").stop().animate({
+        top: 0
+      },200);
+    }).mousedown(function() {
+      $(".header-bar .light-area").css("backgroundColor","#367312");
+      $(".header-bar .blue-arrow").css("backgroundColor","#367312");
+      $(".header-bar .arrow").css("backgroundPosition","-173px -50px");
+    }).mouseup(function() {
+      $(".header-bar .light-area").css("backgroundColor","");
+      $(".header-bar .blue-arrow").css("backgroundColor","");
+      $(".header-bar .arrow").css("backgroundPosition","");
+    });
+  }
+
+  // Gidsy home button animation trigger:
+  $(document).ready(function() { 
+    home_button();
+  });
+
+  // -------- Dashboard account tab dropdown ------------
+  // #note: the ID is changed from #account-tab to #gidsy-account-tab
+  $("#gidsy-account-tab").click(function (e) {
+    //e.preventDefault();
+    $("#gidsy-account-tab .dropdown").toggle();
+    $("#gidsy-account-tab").toggleClass("open");
+  });
+  $(document).mouseup(function (e) {
+    if ($(e.target).parent("#gidsy-account-tab").length === 0) {
+      $("#gidsy-account-tab").removeClass("open");
+      $("#gidsy-account-tab .dropdown").hide();
+    }
+  });
+
+
+  // -------- Autocomplete search dropdown ------------
+    // Define some style on the autocomplete ui; #q is the seach input
+  jQuery(document).ready(function() {
+    // Default Focus
+    $( "#q" ).bind("autocompleteopen", function(event, ui) {
+      {% if page  == "page_index" %}
+        $('.ui-autocomplete').css({'margin':'-1px 0 0 0', 'width':'679px'});
+      {% else %}
+        $('.ui-autocomplete').css({'margin':'8px 0px 0px -11px', 'width':'279px'});
+      {% endif %}
+    });
+    // Hide #question-mask when there is a search value:
+    if($("#q").attr("value")){
+      $("#question-mask").hide();
+    }
+  {% unless page == "page_index" %}
+    // Change the pagination previous and next arrows:'>>' into text.
+    $("#pagination .next_page").html("Next");
+    $("#pagination .previous_page").html("Previous");
+  {% endunless %}
+  });
+
+  // Overwrite the 'Thank You' text when rating an article for helpfulness
+  $(function(){ $("#rate_article div:nth-child(1) a").click(function(){ $("#rate_article").css("visibility", "hidden"); window.setTimeout(showHello, 1000); }); $("#rate_article div:nth-child(2) a").click(function(){ $("#rate_article").css("visibility", "hidden"); window.setTimeout(showHello, 1000); }) }); 
+  function showHello(){ $("#rate_article").text("You're welcome!");
+  $("#rate_article").css("visibility", "visible"); }
+
+</script>

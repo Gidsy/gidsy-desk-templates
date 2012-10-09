@@ -1,0 +1,929 @@
+/* Custom CSS goes here */
+
+/*************************/
+/***** GIDSY HEADER ******/
+/*************************/
+
+/* Show y-scrollbar so the width stays the same when opening article-lists on frontpage */
+html {
+  overflow-y: scroll;
+}
+
+#site-wrapper {
+  margin-bottom: -20px;
+}
+
+.header-bar.support-center .light-area {
+  background-color: #439016;
+}
+  .header-bar.support-center .arrow {
+    background: transparent url("https://gidsy-files.s3.amazonaws.com/desk/images/iconset-desk.png") no-repeat -152px -50px;
+  }
+  .header-bar.support-center .blue-arrow {
+    background-color: #439016;
+  }
+
+
+/* Desk doesnt allow #account-tab */
+.header-menu #gidsy-account-tab.account-tab {
+  cursor: pointer;
+  position: relative;
+  min-width: 60px;
+  padding: 0 15px;
+  line-height: 44px;
+  margin-top: 1px;
+  height: 49px;
+  top: -1px;
+}
+
+.header-menu #gidsy-account-tab.account-tab .name {
+  max-width: 150px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.header-menu #gidsy-account-tab.account-tab .down-arrow {
+  margin: 4px 0 0 3px;
+}
+
+.header-menu #gidsy-account-tab.account-tab.open {
+  background-color: black;
+}
+
+.header-menu #gidsy-account-tab .dropdown {
+  display: none;
+  background-color: #212121;
+  position: absolute;
+  top: 49px;
+  left: 0px;
+  width: 100%;
+  z-index: 999;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+}
+.header-menu #gidsy-account-tab .dropdown .item {
+  display: block;
+  padding: 0px;
+  border-top: 1px solid #383838;
+}
+.header-menu #gidsy-account-tab .dropdown .item a {
+  display: block;
+  line-height: 16px;
+  height: 18px;
+  font-size: 16px;
+  padding: 11px 15px 10px;
+}
+.header-menu #gidsy-account-tab .dropdown .item a:hover {
+  background-color: #2d2d2d;
+}
+.header-menu #gidsy-account-tab .dropdown .item a:active {
+  background-color: black;
+}
+.header-menu #gidsy-account-tab .dropdown .item.last a {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+}
+.header-menu #gidsy-account-tab .dropdown .item.last a:hover {
+  background-color: #ce453e;
+}
+
+/*************************/
+/**** SUPPORT HEADER *****/
+/*************************/
+
+
+#support-header {
+  padding: 30px 0;
+  border-bottom: 1px solid #DDD;
+}
+  #breadcrumbs {
+    font-size: 26px;
+    line-height: 30px;
+    color: #888;
+  }
+    #breadcrumbs a {
+      font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+      font-weight: 400;
+    }
+  .need-help p {
+    text-align: right;
+    margin:0;
+    line-height: 34px;
+    font-size: 16px;
+    color: #888;
+  }
+    .dashboard .need-help p {
+      text-align: left;
+    }
+    .need-help p .gidsy-button.green-button {
+      padding: 0 16px 4px;
+      margin-left: 12px;
+      line-height: 28px;
+      font-size: 16px;
+    }
+    .need-help p span {
+      margin-right: 12px;
+      line-height: 40px;
+      font-size: 16px;
+      color: #888;
+    }
+
+/*************************/
+/********* INDEX *********/
+/*************************/
+
+h1.welcome-text {
+  font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-size: 33px;
+  margin: 40px 0 23px;
+  letter-spacing: -0.5px;
+}
+
+.support-search-big {
+  width: 780px;
+  text-align: left;
+  margin: 0 auto 50px;
+  padding: 20px;
+  background: #EFEFEF;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+
+  .support-search-big .outer {
+    position: relative;
+    zoom: 1;
+  }
+  .query-input {
+    border: 0px solid #FFF;
+    padding: 10px 8px;
+    border-top: 1px solid #C6D3DC;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: white;
+    margin: 0;
+    text-align: left;
+
+    width: 680px;
+    margin-right: -2px;
+    float: left;
+    padding: 6px 8px 7px;
+    border-bottom-width: 1px;
+    border-bottom-color: #E6E6E6;
+    font-size: 20px;
+    font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,sans-serif;
+    font-weight: 700;
+    color: #006FBA;
+    -webkit-font-smoothing: antialiased;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+  }
+
+  #question-mask {
+    position: absolute;
+    width: 90%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: block;
+    text-overflow: ellipsis;
+  }
+  #question-mask.question-big {
+    font-size: 20px;
+    line-height: 22px;
+    font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,sans-serif;
+    font-weight: 700;
+    color: #006FBA;
+    top: 8px;
+    left: 10px;
+  }
+  #question-mask.question-small {
+    font-size: 16px;
+    line-height: 20px;
+    font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    color: #888;
+    top: 8px;
+    left: 10px;
+  }
+
+
+  .ui-autocomplete .article-autocomplete-subject {
+    display: block;
+    font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .ui-autocomplete .article-autocomplete-body {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    color: #666;
+  }
+
+/* make topics-list look like it's centered */
+#support-main .dashboard .topics-list.prefix_2 {
+  padding-left: 200px;
+}
+#support-main .dashboard .need-help.prefix_2 {
+  padding-left: 200px;
+}
+
+.dashboard .topics-list {
+  margin-bottom: 30px;
+}
+  .dashboard .topics-list .topic a {
+    color: #006FBA;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dashboard .topics-list .topic a:hover {
+    color: #0085C8;
+    text-decoration: underline;
+  }
+
+  .dashboard .topics-list .topic a.active h3, .dashboard .topics-list .topic a.active:hover {
+    color: #10486D;
+  }
+
+  .dashboard .topics-list .topic h3 {
+    font-size: 20px;
+    line-height: 22px;
+    font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,sans-serif;
+    font-weight: 700;
+    color: #006FBA;
+    padding-left: 32px;
+  }
+
+  .dashboard .topics-list .articles-list {
+    padding-left: 2px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard .topics-list .topic ul {
+    width: 270px;
+  }
+  .dashboard .topics-list .topic li {
+    font-size: 16px;
+    line-height: 20px;
+    padding-bottom: 7px;
+    background: url("images/bullet-icon-blue-6px.png") no-repeat 1px 7px;
+    padding: 0 0 12px 14px;
+  }
+  .topics-list .view-all {
+    width: 270px;
+    padding-top: 12px;
+    margin: 4px 0 0 14px;
+    border-top: 1px solid #E5E5E5;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+/*************************/
+/******** ARTICLE ********/
+/*************************/
+
+.content.article .title h2 {
+  margin-top: 26px;
+}
+
+.article-content {
+  font-size: 20px;
+  line-height: 28px;
+}
+  .article-content img {
+    display: block;
+    border: 1px solid #DDD;
+  }
+
+  .article-content ul {
+      margin:0 0 20px 8px;
+    }
+    
+    .article-content ol {
+      margin:0 0 20px 30px;
+    }
+      
+    .article-content ul li {
+      background: url(images/icon_bullet.gif) no-repeat 1px 11px;
+      padding:5px 0 0 22px;
+      margin-left:0px;
+      margin-bottom:5px;
+    }
+        
+    .article-content ol li {
+      list-style:decimal;
+      padding:5px 0 0 0px;
+      margin-left:0px;
+      margin-bottom:5px;
+    }
+
+.article-footer {
+  margin: 30px 0 0;
+}
+
+#rate_article_container {
+  line-height: 34px;
+  font-size: 16px;
+  color: #888;
+}
+#rate_article .rate-link-down {
+  display: none !important;
+}
+#rate_article div span {
+  float: left;
+  margin-right: 5px;
+}
+
+#related-articles {
+  border-top: 1px solid #DDD;
+  margin-top: 30px;
+  padding-top: 22px;
+}
+  #related-articles h4 {
+    font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+    font-weight: 400;
+  }
+  #related-articles ul {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 20px;
+  }
+  #related-articles li {
+    padding: 0 0 12px 20px;
+    background: url("images/bullet-icon-blue-8px.png") no-repeat 1px 5px;
+  }
+
+.content .need-help p a {
+  display: inline-block;
+  margin-left: 4px;
+  line-height: 33px;
+}
+
+
+/*************************/
+/******** TOPIC ********/
+/*************************/
+
+.content.articles {
+  margin-top: 20px;
+}
+.content.articles .article {
+  margin-bottom: 24px;
+}
+  .content.articles .article h2 {
+    margin: 6px 0 4px 0;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .content.articles .article h2 a {
+    color: #006FBA;
+  }
+  .content.articles .article h2 a:hover {
+    color: #0085C8;
+    text-decoration: underline;
+  }
+  .content.articles .article p {
+    margin: 5px 0;
+  }
+
+/*************************/
+/******** SEARCH ********/
+/*************************/
+
+.content.search-results .title{
+  font-size: 20px;
+  line-height: 24px;
+  margin: 6px 0 24px 0;
+}
+
+.notice h4 a {
+  color: #006FBA;
+}
+.notice h4 a:hover {
+  color: #0085C8;
+  text-decoration: underline;
+}
+
+/* prevent the search_term div from showing up */
+#search_term {
+  display: none;
+}
+
+
+/*************************/
+/****** CONTACT US *******/
+/*************************/
+a.light {
+  font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+  font-weight: 400;
+}
+
+.content.contact-us {
+  margin-top: 30px;
+}
+
+.business-hours {
+  font-size: 16px;
+  line-height: 30px;
+  color: #888;
+}
+
+/* Specific CSS for input instead of button: */
+.uniForm input.gidsy-button {
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+padding: 0 20px 2px;
+font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,sans-serif;
+font-weight: 700;
+vertical-align: top;
+}
+
+.input-block.ctrlHolder {
+  clear: both;
+}
+
+  .input-block.ctrlHolder input.invalid, .input-block.ctrlHolder textarea.invalid {
+    border: 1px solid #EDBDBA;
+    -webkit-box-shadow: 0 0 0 #DBE5EC;
+    -moz-box-shadow: 0 0 0 #dbe5ec;
+    box-shadow: 0 0 0 #DBE5EC;
+  }
+
+
+  .input-block.ctrlHolder label.invalid {
+    width: 95%;
+    margin: -4px 5px 20px 5px;
+    padding: 6px 8px 4px;
+    color: #9B241E;
+    border: 1px solid #EDBDBA;
+    border-top: 0 solid white;
+    background-color: #F6DFDD;
+    display: block !important;
+    font-size: 12px;
+    font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+    font-weight: 400;
+    -moz-border-radius-bottomleft: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -khtml-border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+    -khtml-border-bottom-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+
+  .input-block.ctrlHolder .label .required {
+    visibility: hidden;
+  }
+
+
+/*************************/
+/******** SIDEBAR ********/
+/*************************/
+
+
+#support-side {
+  margin-top: 30px;
+}
+  #support-side .search-box {
+    margin-left: 0;
+  }
+  #support-side .search-box .search_submit {
+    background: url("https://gidsy-files.s3.amazonaws.com/desk/images/iconset-desk.png") no-repeat -87px -284px;
+  }
+  #support-side .search-box .search_submit:active {
+    background-position: -147px -284px;
+  }
+  #support-side .search-box .search_submit:hover {
+    background-position: -147px -284px;
+  }
+
+#sidebar-navigation {
+  margin-top: 30px;
+}
+
+#sidebar-navigation li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 5px 0 15px 0;
+}
+  #sidebar-navigation li.active a {
+    color: #10486D;
+  }
+#sidebar-navigation .topic-header {
+  font-size: 16px;
+  line-height: 20px;
+}
+#sidebar-navigation .topic-header .title {
+  padding-left: 30px;
+}
+
+
+/*************************/
+/******** TEASER ********/
+/*************************/
+
+.support-teasers {
+  margin-top: 60px;
+}
+.support-teasers .teaser-holder {
+  padding: 27px 0;
+}
+.support-teasers .separator {
+  border-top: 1px solid #dddddd;
+}
+.support-teasers a {
+  display: block;
+}
+.support-teasers a:hover {
+  text-decoration: none;
+}
+.support-teasers a:hover h5, .support-teasers a:hover p {
+  color: #006fba;
+}
+.support-teasers a img {
+  float: left;
+  margin: 5px 12px 0 0;
+  margin-right: 12px;
+}
+.support-teasers h5 {
+  color: #888;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}
+.support-teasers p {
+  color: #888;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: "myriad-pro-1", "myriad-pro-2", Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+#footer .footer {
+  padding-top: 20px;
+}
+
+#footer.index-page .footer {
+  margin-top: 0;
+}
+
+#desk_notice {
+  height:16px;
+}
+#desk_notice, #desk_notice a {
+  font-family: "myriad-pro-1","myriad-pro-2",Arial,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-size: 12px;
+  color: #BBB;
+}
+
+
+/*************************/
+/********* ICONS *********/
+/*************************/
+
+.topic-icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: url("images/iconset-desk.png") no-repeat -47px -123px;
+}
+  /* Getting Started */
+  .topic327796 .topic-icon {
+    background-position: -17px -125px;
+  }
+  /* General Information */
+  .topic327808 .topic-icon {
+    background-position: -48px -123px;
+  }
+  /* Organizing activities */
+  .topic306659 .topic-icon {
+    background-position: -49px -153px;
+  }
+  /* Booking events */
+  .topic327804 .topic-icon {
+    background-position: -17px -154px;
+  }
+  /* Accounts & Profiles */
+  .topic327797 .topic-icon {
+    background-position: -48px -186px;
+  }
+  /* Trust & Safety */
+  .topic327807 .topic-icon {
+    background-position: -48px -217px;
+  }
+  /* Cancelations & Refunds */
+  .topic327805 .topic-icon {
+    background-position: -16px -184px;
+  }
+  /* Payments & Payouts */
+  .topic327806 .topic-icon {
+    background-position: -16px -217px;
+  }
+
+#sidebar-navigation .topic-icon {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: url("images/iconset-desk.png") no-repeat -148px -124px;
+}
+  /* Getting Started */
+  #sidebar-navigation .topic327796 .topic-icon {
+    background-position: -120px -125px;
+  }
+  /* General Information */
+  #sidebar-navigation .topic327808 .topic-icon {
+    background-position: -148px -124px;
+  }
+  /* Organizing activities */
+  #sidebar-navigation .topic306659 .topic-icon {
+    background-position: -149px -154px;
+  }
+  /* Booking events */
+  #sidebar-navigation .topic327804 .topic-icon {
+    background-position: -120px -153px;
+  }
+  /* Accounts & Profiles */
+  #sidebar-navigation .topic327797 .topic-icon {
+    background-position: -147px -183px;
+  }
+  /* Trust & Safety */
+  #sidebar-navigation .topic327807 .topic-icon {
+    background-position: -147px -212px;
+  }
+  /* Cancelations & Refunds */
+  #sidebar-navigation .topic327805 .topic-icon {
+    background-position: -120px -183px;
+  }
+  /* Payments & Payouts */
+  #sidebar-navigation .topic327806 .topic-icon {
+    background-position: -122px -213px;
+  }
+
+
+/* green plus icon for 'was this article helpful' */
+#rate_article > div a {
+  display: inline-block;
+  text-indent: -9999px;
+  width: 16px;
+  height: 16px;
+  background: url("images/iconset-desk.png") no-repeat -20px -300px;
+  margin: 11px 0 0 3px;
+}
+
+.view-all-arrow {
+  display: inline-block;
+  width: 11px;
+  height: 10px;
+  background: url("images/iconset-desk.png") no-repeat -42px -301px;
+  margin: 0 0 0 3px;
+}
+
+.clock-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url("images/iconset-desk.png") no-repeat -20px -322px;
+  margin: 0px 7px 4px 0;
+  vertical-align: middle;
+}
+
+
+/*************************/
+/****** PAGINATION *******/
+/*************************/
+
+#pagination {
+  padding: 15px 0 0;
+}
+#pagination .pagination {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  padding: 15px 2px;
+}
+  #pagination .pagination em.current {
+    font-family: "myriad-pro-semi-condensed-1", "myriad-pro-semi-condensed-2", Arial, sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    background-color: #10486d;
+    color: white;
+    padding: 1px 6px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+  }
+  #pagination .pagination a {
+    margin: 0 5px;
+  }
+
+  #pagination .pagination .next_page {
+    width: 100px;
+    height: 30px;
+    float: right;
+    text-align: right;
+  }
+    #pagination .pagination .next_page:after {
+      content: " ";
+      display: inline-block;
+      margin-left: 5px;
+      width: 10px;
+      height: 10px;
+      background: url("images/iconset-desk.png") no-repeat -89px -326px;
+    }
+
+  #pagination .pagination .previous_page {
+    width: 100px;
+    height: 30px;
+    float: left;
+    text-align: left;
+  }
+    #pagination .pagination .previous_page:before {
+      content: " ";
+      display: inline-block;
+      margin-right: 5px;
+      width: 10px;
+      height: 10px;
+      background: url("images/iconset-desk.png") no-repeat -59px -326px;
+    }
+
+
+  #pagination .pagination .disabled {
+    visibility: hidden;
+  }
+
+
+/*************************/
+/******** MODALS *********/
+/*************************/
+
+#modal-screen {
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+}
+
+#modal .inner {
+  background: rgba(0,0,0,0.4);
+  width: 700px;
+  left: 50%;
+  top: 50%;
+  margin: -230px 0 0 -350px;
+  position: absolute;
+  padding: 5px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+#modal .inner h1 {
+  text-align: center;
+  font-size: 27px;
+  padding: 25px 0 0;
+}
+
+#modal .inner p.subheader {
+  font-size: 18px !important;
+  color: #767676 !important;
+  text-align: center;
+  margin: 4px 0 30px 0;
+}
+
+#modal .inner .input-button {
+  text-align: center;
+  padding: 0 0 30px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#modal .inner .input-button input {
+  margin: 0 0 0 10px;
+}
+
+#modal .inner .note {
+  text-align: center;
+  color: #616161;
+  margin: 0 0 20px 0 !important;
+  font-size: 15px;
+  font-style: italic;
+}
+
+#modal .main {
+  background: #FFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#modal .close {
+  float: right;
+  margin: -16px -16px 0 0;
+}
+
+
+/*************************/
+/**** FLASH MESSAGES *****/
+/*************************/
+
+#flash {
+  font-size: 20px;
+  text-align: center;
+  display:none;
+}
+
+.flash_html {
+  display: inline;
+}
+
+.flash_ajax {
+  display:block;
+  margin:0;
+  position:absolute;
+  top:50px;
+  width:100%;
+  z-index:1003;
+  color:#222;
+}
+
+.flash_html div, .flash_ajax div {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 40px;
+}
+.flash_ajax div.flash_notice,
+.flash_html div.flash_notice {
+  /* hide the notice messages */
+  display: none;
+  color: #32581C;
+  background-color: #E3EEDC;
+  border: 1px solid #C6DDB9;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.flash_ajax div.flash_error,
+.flash_html div.flash_error,
+.flash_ajax div.flash_critical,
+.flash_html div.flash_critical {
+  background-color: #F9EBD9;
+  border: 1px solid #F2D6B0;
+  border-left-width: 0;
+  border-right-width: 0;
+  color: #7D5520;
+}
+
+
+/*************************/
+/**** MISCELLANEOUS ******/
+/*************************/
+
+/* Prevent Desk jquery external variables pop-up */
+.desk-external-variables {
+  display: none;
+}
+
+/* end custom CSS */

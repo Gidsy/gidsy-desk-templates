@@ -1,0 +1,85 @@
+{% if enable_gs %}
+  {{ gsinit }}
+{% endif %}
+
+{% if favicon.size > 0 %}
+<link rel='SHORTCUT ICON' type='image/ico' href='{{favicon}}' />
+<link rel='icon' type='image/png' href='{{favicon}}' />
+{% else %}
+<link rel='icon' type='image/vnd.microsoft.icon' href='{{ "/favicon.ico" | portal_image_url: image_asset_host }}' />
+<link rel='icon' type='image/png' href='{{ "/favicon.ico" | portal_image_url: image_asset_host }}' />
+{% endif %}
+
+<!-- Typekit -->
+<script type="text/javascript" src="https://use.typekit.com/ynx0goe.js"></script>
+<script type="text/javascript">
+ try {
+   Typekit.load({
+     active: function() {
+       
+     }
+   })
+ } catch(e) {}
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22985053-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<link href="https://d3pvklq8xnxxh2.cloudfront.net/cache/css/screen.css" rel="stylesheet" type="text/css" />
+<link href="https://d3pvklq8xnxxh2.cloudfront.net/cache/css/all.css" rel="stylesheet" type="text/css" />
+<link href="https://gidsy-files.s3.amazonaws.com/desk/desk.css" rel="stylesheet" type="text/css" />
+
+<title>
+  {{ site.company_name }} {{system.snippets.support_center}} |
+  {% if page == 'page_index' %}
+    Browse our FAQs, find answers to your questions or contact our support team
+  {% elsif page == 'page_search_result' %}
+    Search Results
+  {% elsif page == 'page_topic' %}
+    {{ topic.name }}
+  {% elsif page == 'page_article' %}
+    {{ article.subject_plain }}
+  {% elsif page == 'question_new' or page == 'question_pre_create' %}
+    Post a Public Question
+  {% elsif page == 'question_show' %}
+    {{ question.subject_plain }}
+  {% elsif page == 'email_new' or page == 'email_pre_create' %}
+    Email Us
+  {% elsif page == 'email_submitted' %}
+    Email Sent
+  {% elsif page == 'chat_new' or page == 'chat_pre_create' %}
+    Live Chat!
+  {% endif %}
+</title>
+
+{% if page == 'page_article' %}
+  <meta property="og:title" content="{{ article.subject_plain | clip:40 }}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="{{ site.company_name }} {{system.snippets.support_center}}"/>
+  <meta property="og:description"
+        content="{{ article.body_text | clip: 120}}"/>
+{% endif %}
+
+{% if page == 'page_topic' %}
+  {% if site.questions_enabled_config and topic.question_count > 0 and topic.allow_questions %}
+    <link rel='alternate' type='application/rss+xml' title='{{ topic.name | clip:40 }} - Questions (RSS 2.0)' href='{{ topic.public_url }}/questions.rss' />
+  {% endif %}
+  {% if topic.article_count > 0 %}
+    <link rel='alternate' type='application/rss+xml' title='{{ topic.name | clip:40 }} - Articles (RSS 2.0)' href='{{ topic.public_url }}/articles.rss' />
+  {% endif %}
+{% endif %}
+
+
+<!-- here lies Desk.com CSS -->
+<!-- RIP -->

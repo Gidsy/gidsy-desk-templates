@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{case.subject}}</title>
+    <style type="text/css">
+      /*
+          insert simple.css here and inline-CSSify the HTML for Desk.com admin:
+          http://beaker.mailchimp.com/inline-css
+      */
+    </style>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    <div style="color: #BBBBBB; background: #FFFFFF; padding: 20px; text-align:center;">
+      {{system.snippets.response_above_this_line}}
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+      <tr>
+        <td align="center" valign="top">
+          <div id="emailHolder">
+            <table border="0" cellpadding="0" cellspacing="0" width="630" id="emailWrapper">
+              <tr>
+                <td>
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailHeader" height="7">
+                    <tr>
+                      <td height="7" valign="top" bgcolor="#EEEEEE">
+                        <img src="http://d3ghp6i6h0kqjh.cloudfront.net/img/html-emails/email_container_header.gif" alt="" />
+                      </td>
+                    </tr>
+                  </table>
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" id="messageHeader">
+                    <tr>
+                      <td class="message_headers" valign="middle" bgcolor="#FFFFFF">
+                        <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+                          <tr>
+                            <td class="header_icon">
+                              <img src="https://gidsy-files.s3.amazonaws.com/desk/images/emails/icon-message-green.png" />
+                            </td>
+                            <td style="font-size: 12px; color: #555555; font-weight: bold;">
+                              {{system.snippets.subject}}: {{case.subject}}
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td class="message_logo">
+                        <img src="http://d3ghp6i6h0kqjh.cloudfront.net/img/html-emails/gidsy_logo_64x30.png" width="64" height="30" />
+                      </td>
+                    </tr>
+                  </table>
+                  <div id="emailContent">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <!-- DESK body starts here -->
+                      <div>
+                        {% assign emails = case.emails %}
+                        <div style="font-size: 14px; color: #212121;">
+                          {% if customer %}
+                            Hi {{customer.first_name}},
+                          {% else %}
+                            Hi there,
+                          {% endif %}
+                          <br /><br />
+                          {{system.snippets.auto_ack_message | newline_to_br}}
+                        </div>
+                        <hr style="border: 0 solid white; border-bottom: 1px solid #EEE; margin:30px 0;" />
+                        {% for email in emails reversed %}
+                          {% if email.agent %}
+                            {% if forloop.first %}
+                              <span style="display: block; font-size:14px; color: #212121; font-weight: bold;">
+                                {{email.agent.name_public}}
+                              </span>
+                              <span style="display: block; margin: 6px 0; font-size:12px; color: #888888;">
+                                {{email.send_at | date: "%b %d, %Y" }} {{email.send_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+                              </span>
+                              <br/>
+                              <div style="font-size: 14px; color: #212121;">{{email.new_html}}</div>
+                              {% if email.agent.signature %}
+                                <div style="margin-top:10px;"> {{email.agent.signature | newline_to_br}}</div>
+                              {% endif %}
+                            {% else %}
+                              <span style="display: block; font-size:14px; color: #888888; font-weight: bold;">
+                                {{email.agent.name_public}}
+                              </span>
+                              <span style="display: block; margin: 6px 0; font-size:12px; color: #888888;">
+                                {{email.send_at | date: "%b %d, %Y" }} {{email.send_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+                              </span>
+                              <br />
+                              <div style="font-size: 14px; color: #888888;">{{email.new_html}}</div>
+                              {% if email.agent.signature %}
+                                <div style="margin-top:10px;"> {{email.agent.signature | newline_to_br}}</div>
+                              {% endif %}
+                            {% endif %}
+                            <hr style="border: 0 solid white; border-bottom: 1px solid #EEE; margin:30px 0" />
+                          {% else %}
+                            <span style="display: block; font-size:14px; color: #888888; font-weight: bold;">
+                              {% if customer.id == email.from_customer.id %}
+                                {{customer.first_name}}
+                              {% else %}
+                                {{email.from_customer.first_name}}
+                              {% endif %}
+                            </span>
+                            <span style="display: block; margin: 6px 0; font-size:12px; color: #888888;">
+                              {{email.created_at | date: "%b %d, %Y" }} {{email.created_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+                            </span>
+                            <br />
+                            <div style="font-size: 14px; color: #888888;">
+                              {{email.new_html}}
+                            </div>
+                            {% unless forloop.last %}
+                              <hr style="border: 0 solid white; border-bottom: 1px solid #EEE; margin:30px 0;" />
+                            {% endunless %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      <!-- DESK body ends here -->
+                    </table>
+                  </div>
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailFooter">
+                    <tr>
+                      <td height="7" valign="top" bgcolor="#EEEEEE">
+                          <img src="http://d3ghp6i6h0kqjh.cloudfront.net/img/html-emails/email_container_footer.gif" alt="" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td id="footer_meta">
+                        <p>
+                          Copyright &copy; {{email.created_at | date: %Y" }} <a href="https://gidsy.com">Gidsy.com</a>, All rights reserved.
+                          <br />{{system.snippets.message_was_sent_to}} <a href="mailto:{{case.customer.email}}">{{case.customer.email}}</a> {{system.snippets.in_reference_to_case}} {{case.id}}.
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{% assign emails = case.emails %}{% for email in emails reversed %}{{email.new_text}}
+{% if email.agent %}
+--
+{% if email.agent %}{% if email.agent.signature %}{{email.agent.signature | strip_html }}{%else%}{{email.agent.name_public}}{% endif %}
+{% endif %}
+{% if forloop.rindex0 != 0 %}
+On {{email.send_at | date: "%b %d, %Y"}} at {{email.send_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}, {% if email.agent %}{{email.agent.name_public}} <{{ email.agent.email }}>{% else %}{% if customer.id == email.from_customer.id %}{{customer.first_name}} <{{ customer.email }}>{% else %}{{email.from_customer.first_name}} <{{ email.from_customer.email }}>{% endif %}{% endif %}  wrote:
+{% endif %}{% endif %}{% endfor %}

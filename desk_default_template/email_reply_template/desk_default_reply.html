@@ -1,0 +1,72 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="center" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td valign="top" style="color:#333; font-family:Arial; font-size:14px; line-height:150%; text-align:left;">
+            <table border="0" cellpadding="10" cellspacing="0" width="100%">
+              <tr>
+                <td valign="top">
+                  <div>
+                    <span style="font-size:90%; color:#777;">{{system.snippets.response_above_this_line}}</span>
+                    <hr />
+                    <div style="background-color:#efefef; font-size:100%; padding:5px; margin:10px 0 0 0;">
+                      <strong>{{customer.name}}</strong><br/>
+                      <strong>{{system.snippets.subject}}:</strong> {{case.subject}}
+                    </div>
+                    <hr />
+                    {% assign emails = case.emails %}
+                    {% for email in emails reversed %}
+                      {% if email.agent %}
+                        <span style="font-size:80%;">
+                          {{email.send_at | date: "%b %d, %Y" | upcase}} &nbsp;|&nbsp;
+                          {{email.send_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+                        </span>
+                        <br />
+                        <strong>{{email.agent.name_public}}</strong> {{system.snippets.replied}}:<br/>
+                        <div>{{email.new_html}}</div>
+                        {% if email.agent.signature %}
+                          <div style="margin-top:10px;"> {{email.agent.signature | newline_to_br}}</div>
+                        {% endif %}
+                        <hr />
+                      {% else %}
+                        <span style="font-size:80%;">
+                          {{email.created_at | date: "%b %d, %Y" | upcase}} &nbsp;|&nbsp;
+                          {{email.created_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+                        </span>
+                        <br />
+                        {% if forloop.last %}
+                          <span style="background-color: #efefef; font-weight:strong;">
+                            {{system.snippets.original_message}}
+                          </span>
+                          <br/>
+                        {% endif %}
+                        <strong>
+                          {% if customer.id == email.from_customer.id %}
+                          {{customer.first_name}}
+                          {% else %}
+                          {{email.from_customer.first_name}}
+                          {% endif %}
+                        </strong>
+                        {% if forloop.last %}
+                          {{system.snippets.wrote}}:<br /><br />
+                          {% elsif customer.id == email.from_customer.id %}
+                          {{system.snippets.replied}}:<br />
+                        {% endif %}
+                        {{email.new_html}}
+                        <hr />
+                      {% endif %}
+                    {% endfor %}
+                    <div style="background-color:#fafafa; border:0; font-size:80%; padding:2px;">
+                      {{system.snippets.message_was_sent_to}} {{case.customer.email}} {{system.snippets.in_reference_to_case}}: {{case.id}}. <br />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

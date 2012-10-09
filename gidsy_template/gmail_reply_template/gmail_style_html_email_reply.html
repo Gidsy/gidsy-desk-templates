@@ -1,0 +1,33 @@
+{% assign emails = case.emails %}
+{% assign threadlength = emails.size|minus:1 %}
+{% for email in emails reversed %}
+  {% if forloop.first %}
+    {{email.new_html}}
+    {% if email.agent %}
+      {% if email.agent.signature %}
+        <div style="margin-top:10px;"> {{email.agent.signature | newline_to_br}}</div>
+      {% else %}
+        <p>
+          --<br />
+          {{email.agent.name_public}}<br />
+        </p>
+      {% endif %}
+    {% endif %}
+  {% else %}
+    On {{email.created_at | date: "%b %d, %Y"}} at {{email.created_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}} {{email.from}} &lt;{{email.from_address}}&gt; wrote:
+    <blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+    {{email.new_html}}
+    {% if email.agent %}
+      {% if email.agent.signature %}
+        <div style="margin-top:10px;"> {{email.agent.signature | newline_to_br}}</div>
+      {% else %}
+        <p>
+          --<br />
+          {{email.agent.name_public}}<br />
+        </p>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  <br />
+{% endfor %}
+{% for i in (1..threadlength) %} {{ '</blockquote>' }} {% endfor %}

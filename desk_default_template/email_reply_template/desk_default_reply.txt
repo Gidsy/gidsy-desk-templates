@@ -1,0 +1,22 @@
+{{system.snippets.response_above_this_line}}
+
+------------------------------------------------------------------------------------------------------------
+{{system.snippets.customer}}: {% if customer.id == email.from_customer.id %}{{customer.name}}{% else %}{{email.from_customer.name}}{% endif %}
+{{system.snippets.subject}}: {{case.subject}}
+------------------------------------------------------------------------------------------------------------
+{% assign emails = case.emails %}{% for email in emails reversed %}{% if email.agent %}
+{{email.agent.name_public}} | {{email.send_at | date: "%b %d, %Y" | upcase}} | {{ email.send_at | in_time_zone: site.timezone | date: "%I:%M%p %Z" }}
+{% else %}{% if customer.id == email.from_customer.id %}
+{{customer.first_name}} | {{email.created_at | date: "%b %d, %Y" | upcase}} | {{email.created_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}} {% if forloop.last %} | {{system.snippets.original_message}} {% endif %}
+{% else %}
+{{email.from_customer.first_name}} | {{email.created_at | date: "%b %d, %Y" | upcase}} | {{email.created_at | in_time_zone: site.timezone | date: "%I:%M%p %Z"}}
+{% endif %}{% endif %}
+{{email.new_text}}
+{% if email.agent %}{{email.agent.signature | strip_html }}{% endif %}{% if forloop.rindex0 != 0 %}
+------------------------------------------------------------------------------------------------------------
+{% endif %}{% endfor %}
+
+------------------------------------------------------------------------------------------------------------
+{{system.snippets.message_was_sent_to}}{{case.customer.email}} {{system.snippets.in_reference_to_case}}: {{case.id}}.
+------------------------------------------------------------------------------------------------------------
+

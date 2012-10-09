@@ -1,0 +1,13 @@
+{{system.snippets.response_above_this_line}}
+
+------------------------------------------------------------------------------------------------------------
+
+{{system.snippets.subject}}: {{case.subject}}
+
+{% if customer %}Hi {{customer.first_name}},{% else %}Hi there,{% endif %}  
+
+{{system.snippets.auto_ack_message}}
+
+------------------------------------------------------------------------------------------------------------
+{{system.snippets.message_was_sent_to}} {{case.customer.email}} {{system.snippets.in_reference_to_case}} #{{case.id}}.
+------------------------------------------------------------------------------------------------------------
