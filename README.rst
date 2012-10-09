@@ -28,4 +28,5 @@ All the email template files can be found in the git repo as well. See::
     ``gidsy/templates/desk/gidsy_template/gidsy_reply_template``
 
 * The template files use the 'simple' Gidsy email layout. Found in ``gidsy/templates/emails/layout/simple.css`` of the main ``Gidsy`` repository.
-* This also means you have to add the simple.css into the Desk template files and run them through an inline-css tool. This is HTML commented in the Desk template files.
+* To incorporate the css into the email templates, use the
+``export_email_templates.py`` in this repository.
