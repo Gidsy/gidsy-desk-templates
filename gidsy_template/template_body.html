@@ -1075,21 +1075,22 @@
                 <div class='input-block ctrlHolder'>
                   <label class='label'>
                     {{system.snippets.message}} <span class="required">({{system.snippets.required}})</span>
-                  </label>
-                  <div>
+                  </label>                 
+                  <div class="expandingArea">
+                    <pre><span></span><br></pre>
                     <textarea id='email_body' name='email[body]'>{{email.body}}</textarea>
-                  </div>
+                  </div> 
                 </div>
-                <!-- Hide the file attachment:
-                <div class='input-block ctrlHolder'>
+                <div class="clear"></div>
+                <div class='input-block ctrlHolder contact-attachement'>
                   <label class='label'>
                     {{system.snippets.file_attachment}}
                   </label>
                   <div>
-                    <input name="case_attachment[attachment]" size="84" type="file"/>
+                    <input id="attach-box" name="case_attachment[attachment]" size="20" type="file"/>
                   </div>
                 </div>
-                -->
+                
                 <div class='button-bar'>
                   <input id='email_submit' class="gidsy-button green-button left" name='commit' type='submit' value='{{system.snippets.send_email}}' />
                   <div class="text-14px help-text" style="vertical-align: middle; float:right; padding:12px 0 0 10px;">
@@ -1685,3 +1686,6 @@
   $("#rate_article").css("visibility", "visible"); }
 
 </script>
+
+<!-- Text area Resize -->
+<script type="text/javascript" src="https://gidsy-files.s3.amazonaws.com/desk/textarea-resize.js"></script>
